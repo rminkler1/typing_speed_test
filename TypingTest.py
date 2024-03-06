@@ -1,4 +1,5 @@
 import random
+import time
 from tkinter import *
 import tkinter.ttk as ttk
 
@@ -9,6 +10,7 @@ class TypingTest:
         self.phrase_labels = []     # store tkinter labels for each word here
         self.window = Tk()
         self.text_box = None
+        self.on = True      # checks text box until set to False
 
     def get_phrase(self):
         # Read the words to type from a list of common English words
@@ -43,6 +45,12 @@ class TypingTest:
     def create_text_box(self, font):
         # UI setup input box for text input
         self.text_box = Text(height=5, width=50, font=font, wrap=WORD)
+        self.text_box.insert(END, 'hello')
         self.text_box.focus()
         self.text_box.config(pady=20, padx=20)
         self.text_box.pack(pady=30)
+
+    def get_text_input(self, char):
+        user_input = self.text_box.get("1.0", "end-1c")
+        print(user_input)
+

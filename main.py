@@ -1,5 +1,6 @@
 from tkinter import *
 from TypingTest import TypingTest
+import time
 
 #Constants
 APP_NAME = "Typing Speed Test"
@@ -16,8 +17,8 @@ test.create_text_box(PHRASE_FONT)
 # TODO: UI setup show results
 
 # TODO: Compare current word typed with current word displayed & Show errors (RED CHARACTERS)
-# Get's current value in textbox at line 1, character 0
-print(test.text_box.get("1.0", END))
+test.text_box.bind("<KeyRelease>", test.get_text_input)
+
 # TODO: Track time from start of typing to end of test.
 
 # TODO: Calculate CPM, WPM, & Accuracy
