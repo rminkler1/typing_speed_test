@@ -1,1 +1,2 @@
-# typing_speed_test
+# Typing Speed Test
+tkinter GUI application
