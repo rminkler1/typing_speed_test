@@ -5,19 +5,25 @@ from tkinter import *
 
 class TypingTest:
     def __init__(self, num, font, color):
-        self.phrase = []  # store the randomly selected words here
-        self.phrase_labels = []  # store tkinter labels for each word here
+        """
+        Set initial values for the test.
+        Pass global variables to the class
+        """
+        self.phrase = []            # store the randomly selected words here
+        self.phrase_labels = []     # store tkinter labels for each word here
         self.window = Tk()
         self.text_box = None
         self.start_time = None
         self.end_time = None
-        self.number_of_words = num
-        self.font = font
-        self.color = color
-
+        self.number_of_words = num  # passed global
+        self.font = font            # passed global
+        self.color = color          # passed global
 
     def get_phrase(self):
-        # Read the words to type from a list of common English words
+        """
+        Read the words to type from a list of common English words.
+        Place the words in a list self.phrase
+        """
         with open('words_en.txt') as file:
             words = file.read().split()
 
@@ -26,13 +32,20 @@ class TypingTest:
             self.phrase.append(random.choice(words))
 
     def open_window(self, app_name):
-        # open tkinter window
+        """
+        open tkinter window as self.window
+        Set size, padding, and color
+        """
         self.window.title(app_name)
         self.window.minsize(width=1000, height=600)
         self.window.config(padx=20, pady=20, bg=self.color)
 
     def build_phrase_labels(self):
-        # iterate through all words
+        """
+        iterate through all words
+        Build five frames containing five words (Labels) each
+        assign each Label to an array for future reference, color change
+        """
         for i, word in enumerate(self.phrase):
             if i % 5 == 0:  # every fifth word starting at 0, create a frame
                 if i > 0:  # close the previous frame before opening a new one
@@ -47,14 +60,24 @@ class TypingTest:
                 phrase_frame.pack()
 
     def create_text_box(self):
-        # UI setup input box for text input
+        """
+        UI setup input box for user text input
+        """
         self.text_box = Text(height=5, width=50, font=self.font, wrap=WORD)
         self.text_box.focus()
         self.text_box.config(pady=20, padx=20)
         self.text_box.pack(pady=30)
 
     def check_user_input(self, char):
+        """
+        Runs on each key release.
+        Records start time on first key press.
+        Compare typed words to self.phrase words and highlight correct or incorrect words.
+        End test once final word is typed.
+        char is not used, but is sent on keyRelease
+        """
         user_input = self.text_box.get("1.0", "end-1c")
+
         # split user input into a list
         user_words = user_input.split()
 
@@ -75,7 +98,6 @@ class TypingTest:
                 self.phrase_labels[i].config(bg="red")  # word doesn't match: highlight red
 
         # on correction, change highlight back to grey
-
         for x in range(i + 1, len(self.phrase)):
             self.phrase_labels[x].config(bg=self.color)  # change back to grey
 
@@ -88,6 +110,9 @@ class TypingTest:
             self.get_results(len(user_input), user_words)
 
     def get_results(self, chars, words):
+        """
+        On completion of the test, Calculate and display results.
+        """
         seconds = (self.end_time - self.start_time).total_seconds()
         wpm = int((chars / 5) / (seconds / 60))
 
