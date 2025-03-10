@@ -1,9 +1,9 @@
 # Typing Speed Test
 tkinter GUI application
 
-This application begins the timer automatically when the user begins typing and ends when the user types the last word.
-Words are checked for accuracy in real time.
-Words are randomly chosen from a list of common English words stored in a txt file and displayed above the text area.
+- This application begins the timer automatically when the user begins typing and ends when the user types the last word.
+- Words are checked for accuracy in real time, highlighting in green when the word is typed correctly or red if typed incorrectly.
+- Words are randomly chosen from a list of common English words stored in a txt file and displayed above the text area.
 
 Run main.py to play.
 
