@@ -3,6 +3,7 @@ tkinter GUI application
 
 This application begins the timer automatically when the user begins typing and ends when the user types the last word.
 Words are checked for accuracy in real time.
+Words are randomly chosen from a list of common English words and displayed above the text area.
 
 Run main.py to play.
 
